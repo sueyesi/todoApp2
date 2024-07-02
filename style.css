@@ -1,0 +1,141 @@
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cafe24Meongi-W-v1.0';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/Cafe24Meongi-W-v1.0.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+body{    
+    font-family: 'GmarketSansMedium';
+    margin: 0;
+    background-image: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);
+    background-size: cover;
+}
+h1{
+    font-family: 'Cafe24Meongi-W-v1.0';
+    text-align: center;
+    font-size: 5.0rem;
+}
+.container{
+    background: #fff;
+    min-height: 100vh;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 50px;
+}
+.inputArea{
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    border: 5px solid #31cad1;
+    border-radius: 50px;
+    overflow: hidden;
+    margin:40px 0;
+}
+.inputArea input{
+    background: none;
+    width: 80%;
+    border: none;
+    padding: 1.0rem;    
+    font-size: 2rem;
+    text-align: center;  
+}
+.inputArea button{
+    width: 30%;
+    border: none;
+    background: #31cad1;
+    font-size:1.5rem;
+    color: #fff;
+}
+.inputArea button:hover {
+   color: #10595d;
+}
+input:focus {outline:none; background: none;}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-transition: background-color 9999s ease-out;
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+}
+.taskArea{
+    margin: 20px 0;
+}
+.taskTab {
+    width: 100%;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+}
+.taskTab div{
+    width: 100px;       
+    text-align: center;
+    padding: 1rem;
+    border-radius: 20px 20px 0 0; 
+    background: #a48afb; 
+    color: #fff;
+    cursor: pointer;
+}
+#underLine{
+    position: absolute;
+    width: 100px;
+    left: 0;
+    top: 50px;
+    padding: 0;
+    z-index: 2;
+    border-radius: 0;
+    border-bottom: 2px dotted #fff;
+}
+.taskBoard{    
+    background: #a48afb; 
+    padding: 50px;
+    border-radius: 0 30px 30px 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.task{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;    
+    align-items: center;
+    margin-bottom: 5px;
+    background:#fff;
+    border-radius: 10px;
+    transition: all 0.3s ease-out;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+.task:hover{    
+    border-radius: 50px;    
+}
+.task.inactive{    
+    background: rgba(255, 255, 255, 0.7);
+}
+.task.inactive:hover{    
+    border-radius: 10px;
+}
+.task.inactive button{    
+    background: #805bfa
+}
+.taskDone{    
+    text-decoration: line-through; 
+    color: #805bfa
+}
+.task button{
+    border: none;
+    width: 40px;
+    height:40px;
+    transition: all 0.2s ease-out;
+    background: #ff6b9d;
+    color: #fff;
+    font-size: 1.2rem;
+}
+.task button:hover{    
+    background: #59e4e9;
+}
+.task button i{
+    vertical-align: middle;    
+}
