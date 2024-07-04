@@ -15,6 +15,8 @@ body{
     margin: 0;
     background-image: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);
     background-size: cover;
+    font-size: 18px;
+    min-width: 320px;
 }
 h1{
     font-family: 'Cafe24Meongi-W-v1.0';
@@ -65,12 +67,13 @@ input:-webkit-autofill:active {
 }
 .taskArea{
     margin: 20px 0;
+    position: relative;    
 }
 .taskTab {
     width: 100%;
     display: flex;
     position: relative;
-    overflow: hidden;
+    overflow: hidden;    
 }
 .taskTab div{
     width: 100px;       
@@ -82,20 +85,33 @@ input:-webkit-autofill:active {
     cursor: pointer;
 }
 #underLine{
-    position: absolute;
-    width: 100px;
+    position: absolute;    
     left: 0;
-    top: 50px;
+    top: 57px;
     padding: 0;
     z-index: 2;
     border-radius: 0;
     border-bottom: 2px dotted #fff;
+    transition: 0.5s ease-out;
 }
 .taskBoard{    
     background: #a48afb; 
     padding: 50px;
     border-radius: 0 30px 30px 30px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.taskNum{  
+   position: absolute;
+   right: 5%;
+   top: 80px;
+   font-size: 1rem;   
+}
+.taskNum ul{
+    display: flex;
+}
+.taskNum ul li{
+    display: flex;
+    padding-left: 15px;
 }
 .task{
     display: flex;
@@ -139,3 +155,42 @@ input:-webkit-autofill:active {
 .task button i{
     vertical-align: middle;    
 }
+
+@media (max-width: 640px) {
+    body{
+        font-size: 14px;
+    }
+    h1 {        
+        font-size: 3.0rem;
+    }
+    .container{        
+        padding: 30px;
+    }
+    .inputArea {
+        margin: 20px 0;
+    }
+    .inputArea input {       
+        padding: 0.5rem;
+        font-size: 1.5rem;
+    }
+    .inputArea button {        
+        font-size: 1.0rem;
+    }
+    .taskBoard {
+        background: #a48afb;
+        padding: 20px;
+        border-radius: 0 0 30px 30px;
+        padding-top: 40px;
+    }
+    .taskTab div {
+        width: 33.333%;
+       
+    }
+    #underLine {       
+        width: 33.333%;
+    }
+    .task {        
+        padding: 0.5rem 1rem;       
+    }
+  }
+

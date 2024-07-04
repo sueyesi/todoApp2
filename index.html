@@ -12,7 +12,7 @@
     <div class="container">
         <h1>Todo List</h1>
         <section class="inputArea">
-            <input type="text" id="taskInput">            
+            <input type="text" id="taskInput"   onfocus="this.placeholder=''" onfocus="taskclearPlaceholder()" onblur="taskInputPlaceholder()" >            
             <button id="addButton">일정추가</button>
         </section>
         <section class="taskArea">
@@ -21,9 +21,15 @@
                 <div id="all">전체</div>
                 <div id="inProgress">진행중</div>
                 <div id="completed">완료</div>
+                <div id="delete">삭제</div>
+            </div>                    
+            <div id="taskBoard" class="taskBoard">       
             </div>            
-            <div id="taskBoard" class="taskBoard">                
-            </div>
+            <div class="taskNum">
+                <ul>
+                    <li>전체일정(<span id="totalTaskNum"> </span>)</li>
+                </ul>
+            </div>     
         </section>
     </div>    
     <script src="main.js"></script>
