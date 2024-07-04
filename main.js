@@ -32,6 +32,10 @@ taskInput.addEventListener('keypress', function(event) {
         addButton.click();
     }
 });
+taskInput.addEventListener('click', function() {
+    // 첫 번째 탭으로 이동하는 코드 작성
+    document.getElementById('all').click(); // 첫 번째 탭의 id를 사용하여 클릭 이벤트 발생
+});
 //onblur onblur="this.placeholder='여기를 클릭하세요'"
 //input box가 아닌 다른 곳 클릭 시 다시 placeholder 문구가 나타나게 해준
 function taskInputPlaceholder() {
@@ -62,7 +66,7 @@ function addTask(){
     let task = {
         id:randomIDGenerate(),
         taskContent: taskInput.value,
-        isComplet:false,
+        isComplete:false,
     };
     taskList.push(task);
     //console.log(taskList);
@@ -73,9 +77,7 @@ function addTask(){
 
 function render(){
     let list=[];  
-    let totalTasks = taskList.length;
-    let completedTasks = 0;
-    let inProgressTasks = 0; 
+    let totalTasks = taskList.length;    
 
     if(mode === "all"){
         //선택한 모드가 all 일경우 taskList를 뿌려준다
@@ -87,7 +89,7 @@ function render(){
     resultHtml = '';    
 
     for(let i=0;i<list.length;i++){
-        if(list[i].isComplet == true){
+        if(list[i].isComplete == true){
             resultHtml += `<div class="task inactive">
                     <div class="taskDone">${list[i].taskContent}</div>
                     <div>
@@ -125,7 +127,7 @@ function togglecomplete(id){
     //console.log("id:", id);
     for(let i=0;i<taskList.length;i++){
         if(taskList[i].id == id){
-            taskList[i].isComplet = !taskList[i].isComplet;//토글같다!!!
+            taskList[i].isComplete = !taskList[i].isComplete;//토글같다!!!
             break;//종료
         }
     } 
@@ -165,7 +167,7 @@ function filter(event){
         // isComplet가 false값만 가져온다
         //task.isComplet=false
         for(let i=0;i<taskList.length;i++){
-            if(taskList[i].isComplet === false){
+            if(taskList[i].isComplete === false){
                 filterList.push(taskList[i]);
             }
         }
@@ -175,7 +177,7 @@ function filter(event){
     }else if(mode === "completed"){
         // 종료인 리스트  isComplet = true
         for(let i=0;i<taskList.length;i++){
-            if(taskList[i].isComplet === true){
+            if(taskList[i].isComplete === true){
                 filterList.push(taskList[i]);
             }
         }
