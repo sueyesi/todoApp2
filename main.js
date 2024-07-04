@@ -14,12 +14,16 @@ let taskInput = document.getElementById("taskInput");
 //console.log(taskInput);
 let addButton = document.getElementById("addButton");
 let totalTaskNum = document.getElementById("totalTaskNum");
+let inProgressTasksNum = document.getElementById("inProgressTasksNum");
+let completedTasksNum = document.getElementById("completedTasksNum");
 let taskList =[];
 let tabs = document.querySelectorAll(".taskTab div") //querySelectorAll : 조건에 만족하는 모든것을 가져온다
 let mode="all"
 let filterList =[];
 let inputPlaceholder = document.getElementById("taskInput").placeholder = "등록해주세요!!";
 let totalTasks = 0;
+let inProgressTasks = 0;
+let completedTasks = 0;
 
 addButton.addEventListener("click",addTask);
 
@@ -77,14 +81,26 @@ function addTask(){
 
 function render(){
     let list=[];  
-    let totalTasks = taskList.length;    
+    totalTasks = taskList.length;
+    inProgressTasks = 0;
+    completedTasks = 0;    
 
     if(mode === "all"){
         //선택한 모드가 all 일경우 taskList를 뿌려준다
-        list = taskList;            
-    }else if(mode === "inProgress" || mode === "completed"){
+        list = taskList; 
+        document.getElementById("taskNum1").style.display = "block";   
+        document.getElementById("taskNum2").style.display = "block";     
+    }else if(mode === "inProgress"){
         // 내가 선택한 탭의 필터된 리스트를 뿌려준다.
-        list = filterList;         
+        list = filterList; 
+        document.getElementById("taskNum1").style.display = "block"; 
+        document.getElementById("taskNum2").style.display = "none";        
+    }else if(mode === "completed"){
+        list = filterList; 
+        document.getElementById("taskNum1").style.display = "none";
+        document.getElementById("taskNum2").style.display = "block";
+    }else{        
+        list = filterList; 
     };
     resultHtml = '';    
 
@@ -93,32 +109,30 @@ function render(){
             resultHtml += `<div class="task inactive">
                     <div class="taskDone">${list[i].taskContent}</div>
                     <div>
-                        <button class="btnCheck" onclick="togglecomplete('${list[i].id}')"><i class="fa-solid fa-rotate-right"></i></button>
+                        <button class="btnCheck" onclick="togglecomplete('${list[i].id}')"><i class="fa-solid fa-rotate-right"></i></button>                        
                         <button class="btnDelete" onclick="deleteTask('${list[i].id}')"><i class="fa-regular fa-trash-can"></i></button>
                     </div>
                 </div>`;
-                //completedTasks++;
-                
-                 
+                completedTasks++;
         }else{
             resultHtml += `<div class="task">
                     <div>${list[i].taskContent}</div>
                     <div>
                         <button class="btnCheck" onclick="togglecomplete('${list[i].id}')"><i class="fa-solid fa-check"></i></button>
+                        <button onclick="editTask('${list[i].id}')"><i class="fa-solid fa-pen-to-square"></i></button>
                         <button class="btnDelete" onclick="deleteTask('${list[i].id}')"><i class="fa-regular fa-trash-can"></i></button>
                     </div>
                 </div>`;
-                //inProgressTasks++; 
-                                   
-        }
+                inProgressTasks++; 
+        }       
        
-        totalTaskNum.textContent = `${totalTasks} `; 
-        //completedTaskNum.textContent =  `${completedTasks}`; 
-        //inProgressTaskNum.textContent =  `${inProgressTasks}`;  
-        
+                  
     }
     document.getElementById("taskBoard").innerHTML = resultHtml;
     //console.log("총 " + totalTasks + "건의 할일이 등록되었습니다."); 
+    totalTaskNum.textContent = totalTasks; 
+    completedTasksNum.textContent = completedTasks; 
+    inProgressTasksNum.textContent = inProgressTasks;
       
     //totalTaskNum.textContent = `총 ${totalTasks}건 (진행중인 일정 : ${inProgressTasks} 건 / 완료된 일정 : ${completedTasks}) `;   
 }
@@ -138,15 +152,26 @@ function togglecomplete(id){
 function deleteTask(id){
     //console.log("삭제", id);
     for(let i=0;i<taskList.length;i++){
-        if(taskList[i].id == id){
-            taskList.splice(i,1)
+        if(taskList[i].id == id){            
+            taskList.splice(i,1);                      
         }
     }
     //console.log(taskList);
     //값을 업데이트하면 UI도 업데이트 해준다
-    filter();
+    filter();    
 }
-
+function editTask(id) {
+    let newContent = prompt("일정을 수정하세요");
+    if (newContent) {
+        for (let i = 0; i < taskList.length; i++) {
+            if (taskList[i].id === id) {
+                taskList[i].taskContent = newContent;
+                break;
+            }
+        }
+        render();
+    }
+}
 
 //addEventListener로부터 이벤트를 받아온다.
 function filter(event){
@@ -172,6 +197,7 @@ function filter(event){
             }
         }
         render();
+        
         //console.log("진행중", filterList)
 
     }else if(mode === "completed"){
@@ -185,7 +211,6 @@ function filter(event){
         //console.log("종료", filterList)
     }
 }
-// 할일 목록의 개수를 출력
 // 랜덤 아이디
 function randomIDGenerate(){
     return '_' + Math.random().toString(36).substr(2, 9);

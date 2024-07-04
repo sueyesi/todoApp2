@@ -26,7 +26,7 @@ h1 span {
     position: relative;
     top: 20px;
     display: inline-block;
-    animation: bounce .3s ease infinite alternate;
+    animation: bounce .4s ease infinite alternate;
     font-family: 'Cafe24Meongi-W-v1.0';
     font-size: 5.0rem;
     color: #000;
