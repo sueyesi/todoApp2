@@ -201,7 +201,7 @@ input:-webkit-autofill:active {
     body{
         font-size: 14px;
     }
-    h1 {        
+    h1 span{        
         font-size: 3.0rem;
     }
     .container{        
